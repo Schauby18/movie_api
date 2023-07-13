@@ -58,12 +58,12 @@ const topMovie = [
 ];
 
 // GET route at endpoint /movies
-app.length('/movies', (req, res) => {
+app.get('/movies', (req, res) => {
     res.json(topMovies);
 });
 
 //GET route at endpoint /
-app.length('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Enjoy the movie!')
 });
 
@@ -74,7 +74,7 @@ app.use(express.static('public'));
 app.use(morgan('common'));
 
 // Error handling log 
-app,use((err, req, res, next) => {
+app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('sorry something went wrong');
 });
