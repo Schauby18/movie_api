@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 
 //Define top 10 movie database
-const topMovie = [
+const topMovies = [
     {
         title: 'Remember the Titans',
         genre: 'Sports',
