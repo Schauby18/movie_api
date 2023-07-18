@@ -1,59 +1,60 @@
 const express = require('express');
+    morgan = require('morgan');
+    fs = require('fs');
+    path = require('path');
 const app = express();
-
-const morgan = require('morgan');
 
 //Define top 10 movie database
 const topMovie = [
     {
         title: 'Remember the Titans',
         genre: 'Sports',
-        year: 2000
+        year: '2000'
     },
     {
         title: 'Black Hawk Down',
         genre: 'Action',
-        year: 2001
+        year: '2001'
     },
     {
         title: 'Gladiator',
         genre: 'Action',
-        year: 2000
+        year: '2000'
     },
     {
         title: 'Avengers: End Game',
         genre: 'Superhero',
-        year: 2019
+        year: '2019'
     },
     {
-        title: Star Wars: 'Episode II - Attack of the Clones'
+        title: 'Star Wars Episode II: Attack of the Clones',
         genre: 'Science Fiction',
-        year: 2002
+        year: '2002'
     },
     {
         title: 'Lord of the Rings: The Fellowship of the Ring',
         genre: 'Adventure',
-        year: 2001
+        year: '2001'
     },
     {
         title: '13 Hours',
         genre: 'Action',
-        year: 2016
+        year: '2016'
     },
     {
         title: 'Zoolander',
         genre: 'Comedy',
-        year: 2001
+        year: '2001'
     },
     {
         title: 'Treasure Planet',
         genre: 'Adventure',
-        year: 2002
+        year: '2002'
     },
     {
         title: 'Jurassic Park',
         genre: 'Adventure',
-        year: 2001
+        year: '2001'
     }
 ];
 
