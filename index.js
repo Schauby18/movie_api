@@ -71,8 +71,12 @@ app.get('/', (req, res) => {
 // Serving static from public folder rather than http, url and fs modules
 app.use(express.static('public'));
 
+//create a write stream
+//a 'log.txt' file is created in root directory
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
+
 // Logging requests with Morgan middleware library 
-app.use(morgan('common'));
+app.use(morgan('combined', {stream: accessLogStream}));
 
 // Error handling log 
 app.use((err, req, res, next) => {
