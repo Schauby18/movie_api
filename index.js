@@ -1,7 +1,7 @@
 const express = require('express');
-    morgan = require('morgan');
-    fs = require('fs');
-    path = require('path');
+const morgan = require('morgan');
+const fs = require('fs');
+const path = require('path');
 const app = express();
 
 //Define top 10 movie database
@@ -58,6 +58,14 @@ const topMovies = [
     }
 ];
 
+//create a write stream
+//a 'log.txt' file is created in root directory
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
+
+// Logging requests with Morgan middleware library 
+app.use(morgan('combined', {stream: accessLogStream}));
+
+
 // GET route at endpoint /movies
 app.get('/movies', (req, res) => {
     res.json(topMovies);
@@ -70,13 +78,6 @@ app.get('/', (req, res) => {
 
 // Serving static from public folder rather than http, url and fs modules
 app.use(express.static('public'));
-
-//create a write stream
-//a 'log.txt' file is created in root directory
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
-
-// Logging requests with Morgan middleware library 
-app.use(morgan('combined', {stream: accessLogStream}));
 
 // Error handling log 
 app.use((err, req, res, next) => {
