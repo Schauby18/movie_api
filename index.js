@@ -2,61 +2,96 @@ const express = require('express');
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
+const bodyParser = require('body-parser');
 const app = express();
+uuid = require('uuid');
+
+app.use(bodyParser.json());
+
+let users = [
+    {
+        id: 1,
+        name: "Brianna",
+        favoriteMovies: []
+    },
+    {
+        id: 2,
+        name: "Peyton",
+        favoriteMovies: ["Finding Nemo"]
+    },
+]
 
 //Define top 10 movie database
-const topMovies = [
+let topMovies = [
     {
-        title: 'Remember the Titans',
+        Title: 'Remember the Titans',
         genre: 'Sports',
         year: '2000'
     },
     {
-        title: 'Black Hawk Down',
+        Title: 'Black Hawk Down',
         genre: 'Action',
         year: '2001'
     },
     {
-        title: 'Gladiator',
+        Title: 'Gladiator',
         genre: 'Action',
         year: '2000'
     },
     {
-        title: 'Avengers: End Game',
+        Title: 'Avengers: End Game',
         genre: 'Superhero',
         year: '2019'
     },
     {
-        title: 'Star Wars Episode II: Attack of the Clones',
+        Title: 'Star Wars Episode II: Attack of the Clones',
         genre: 'Science Fiction',
         year: '2002'
     },
     {
-        title: 'Lord of the Rings: The Fellowship of the Ring',
+        Title: 'Lord of the Rings: The Fellowship of the Ring',
         genre: 'Adventure',
         year: '2001'
     },
     {
-        title: '13 Hours',
+        Title: '13 Hours',
         genre: 'Action',
         year: '2016'
     },
     {
-        title: 'Zoolander',
+        Title: 'Zoolander',
         genre: 'Comedy',
         year: '2001'
     },
     {
-        title: 'Treasure Planet',
+        Title: 'Treasure Planet',
         genre: 'Adventure',
         year: '2002'
     },
     {
-        title: 'Jurassic Park',
+        Title: 'Jurassic Park',
         genre: 'Adventure',
         year: '2001'
     }
 ];
+
+//Read
+app.get('/topMovies', (req, res) => {
+    res.status(200).json(topMovies);
+})
+
+//Read
+app.get('/topMovies/:title', (req, res) => {
+    const { title } = req.params;
+    const movie = topMovies.find( movie => movie.Title === title );
+
+    if (movie) {
+        res.status(200).json(movie);
+    } else {
+        res.status(400).send('no such movie')
+    }
+    
+})
 
 //create a write stream
 //a 'log.txt' file is created in root directory
