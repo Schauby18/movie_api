@@ -23,3 +23,5 @@
 ::1 - - [20/Aug/2024:18:59:23 +0000] "GET /movies/Remember%20The%20Titans HTTP/1.1" 404 169 "-" "PostmanRuntime/7.33.0"
 ::1 - - [20/Aug/2024:18:59:48 +0000] "GET /movies/:Remember%20The%20Titans HTTP/1.1" 404 170 "-" "PostmanRuntime/7.33.0"
 ::1 - - [20/Aug/2024:19:00:13 +0000] "GET /movies/:Remember%20The%20Titans HTTP/1.1" 404 170 "-" "PostmanRuntime/7.33.0"
+::1 - - [20/Aug/2024:19:03:49 +0000] "GET /genre HTTP/1.1" 404 144 "-" "PostmanRuntime/7.33.0"
+::1 - - [20/Aug/2024:19:03:58 +0000] "GET /genre/Sports HTTP/1.1" 404 151 "-" "PostmanRuntime/7.33.0"

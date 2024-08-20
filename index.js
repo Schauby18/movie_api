@@ -83,9 +83,9 @@ app.get('/movies/:title', (req, res) => {
 });
 
 //Read
-app.get('/movies/Genre/:genreName', (req, res) => {
+app.get('/movies/genre/:genreName', (req, res) => {
     const { genreName } = req.params;
-    const genre = movies.find(movie => movie.Genre === genreName );
+    const genre = movies.find(movie => movie.genreenre === genreName );
 
     if (genre) {
         res.status(200).json(genre);
@@ -133,7 +133,7 @@ app.post('/users', (req, res) => {
     }
   });
 
-  app.get('/movies/Director/:directorName', (req, res) => {
+  app.get('/movies/director/:directorName', (req, res) => {
     const { directorName } = req.params; 
     const movie = movies.find(movie => movie.director.name.toLowerCase() === directorName.toLowerCase());
   
