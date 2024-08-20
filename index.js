@@ -22,48 +22,47 @@ let users = [
 ]
 
 //Define top movie database
-let topMovies = [
+let movies = [
     {
-        'Title': 'Remember the Titans',
-        'Description': 'A high school football team must overcome racial differences during the age of desegregation.',
-        'Genre': 'Sports',
-        'Year': '2000',
-        'Director': {
-            'Name': 'Boaz Yayik',
-            'Bio': 'An Israeli-American screenwriter, film director, and producer based in New York City. He has director movies such as Remember the Titans and Safe.',
-            'Birthday': 'June 20, 1965'
+        'title': 'Remember the Titans',
+        'description': 'A high school football team must overcome racial differences during the age of desegregation.',
+        'genre': 'Sports',
+        'year': '2000',
+        'director': {
+            'name': 'Boaz Yayik',
+            'bio': 'An Israeli-American screenwriter, film director, and producer based in New York City. He has director movies such as Remember the Titans and Safe.',
+            'birthday': 'June 20, 1965'
         }
-        imageURL: 'https://www.imdb.com/title/tt0210945/mediaviewer/rm625477376/?ref_=tt_ov_i'
     },
+
     {
-        'Title': 'Black Hawk Down',
-        'Description': 'US Forces are forced to fight a gruesome battle in the hostile city of Mogadishu after a black hawk helicopter is shot down.',
-        'Genre': 'Action',
-        'Year': '2001',
-        'Director': {
-            'Name': 'Ridley Scott',
-            'Bio': 'Sir Ridley Scott GBE is an English filmmaker. He is best known for directing films in the science fiction, crime and historical drama genres.',
-            'Birthday': 'November 30, 1937'
+        'title': 'Black Hawk Down',
+        'description': 'US Forces are forced to fight a gruesome battle in the hostile city of Mogadishu after a black hawk helicopter is shot down.',
+        'genre': 'Action',
+        'year': '2001',
+        'director': {
+            'name': 'Ridley Scott',
+            'bio': 'Sir Ridley Scott GBE is an English filmmaker. He is best known for directing films in the science fiction, crime and historical drama genres.',
+            'birthday': 'November 30, 1937'
         }
-        imageURL: 'https://www.imdb.com/title/tt0265086/mediaviewer/rm2867726336/?ref_=tt_ov_i'
-    },
-    {
-        'Title': 'Gladiator',
-        'Description': 'The emperors son is enraged when he is passed over as heir in favour of his fathers favorite general. He kills his father and arranges the murder of the generals family, and the general is sold into slavery to be trained as a gladiator, but his subsequent popularity in the arena threatens the throne.',
-        'Genre': 'Action',
-        'Year': '2000',
-        'Director': {
-            'Name': 'Ridley Scott',
-            'Bio': 'Sir Ridley Scott GBE is an English filmmaker. He is best known for directing films in the science fiction, crime and historical drama genres.',
-            'Birthday': 'November 30, 1937'
         },
-        imageURL: 'https://m.media-amazon.com/images/I/51GA6V6VE1L._SY445_.jpg'
+    
+    {
+        'title': 'Gladiator',
+        'description': 'The emperors son is enraged when he is passed over as heir in favour of his fathers favorite general. He kills his father and arranges the murder of the generals family, and the general is sold into slavery to be trained as a gladiator, but his subsequent popularity in the arena threatens the throne.',
+        'genre': 'Action',
+        'year': '2000',
+        'director': {
+            'name': 'Ridley Scott',
+            'bio': 'Sir Ridley Scott GBE is an English filmmaker. He is best known for directing films in the science fiction, crime and historical drama genres.',
+            'birthday': 'November 30, 1937'
+        },
     }
 ];
 
 //Read
-app.get('/topMovies', (req, res) => {
-    res.status(200).json(topMovies);
+app.get('/movies', (req, res) => {
+    res.status(200).json(movies);
 })
 
 app.get('/users', (req, res) => {
@@ -71,9 +70,9 @@ app.get('/users', (req, res) => {
   });
 
 //Read
-app.get('/topMovies/:Title', (req, res) => {
+app.get('/movies/:title', (req, res) => {
     const { title } = req.params;
-    const movie = topMovies.find(movie => movie.Title === title );
+    const movie = movies.find(movie => movie.title === title );
 
     if (movie) {
         res.status(200).json(movie);
@@ -81,12 +80,12 @@ app.get('/topMovies/:Title', (req, res) => {
         res.status(400).send('no such movie')
     }
     
-})
+});
 
 //Read
-app.get('/topMovies/Genre/:genreName', (req, res) => {
+app.get('/movies/Genre/:genreName', (req, res) => {
     const { genreName } = req.params;
-    const genre = topMovies.find(movie => movie.Genre === genreName );
+    const genre = movies.find(movie => movie.Genre === genreName );
 
     if (genre) {
         res.status(200).json(genre);
