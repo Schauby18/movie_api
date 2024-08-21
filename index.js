@@ -77,15 +77,14 @@ app.get('/movies/:title', (req, res) => {
     if (movie) {
         res.status(200).json(movie);
     } else {
-        res.status(400).send('no such movie')
-    }
-    
+        res.status(400).send('no such movie');
+    }  
 });
 
 //Read
 app.get('/movies/genre/:genreName', (req, res) => {
     const { genreName } = req.params;
-    const genre = movies.find(movie => movie.genreenre === genreName );
+    const genre = movies.find(movie => movie.genre.name === genreName ).genre;
 
     if (genre) {
         res.status(200).json(genre);
@@ -181,7 +180,7 @@ app.use(morgan('combined', {stream: accessLogStream}));
 
 // GET route at endpoint /movies
 app.get('/movies', (req, res) => {
-    res.json(topMovies);
+    res.json(movies);
 });
 
 //GET route at endpoint /
