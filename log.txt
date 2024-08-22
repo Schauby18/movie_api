@@ -28,3 +28,7 @@
 ::1 - - [21/Aug/2024:15:21:53 +0000] "GET /genre/Sports HTTP/1.1" 404 151 "-" "PostmanRuntime/7.37.3"
 ::1 - - [21/Aug/2024:15:30:30 +0000] "GET /genre/Sports HTTP/1.1" 404 151 "-" "PostmanRuntime/7.37.3"
 ::1 - - [21/Aug/2024:15:31:41 +0000] "GET /movies/:genre/:Sports HTTP/1.1" 404 160 "-" "PostmanRuntime/7.37.3"
+::1 - - [22/Aug/2024:16:28:54 +0000] "GET /swagger-ui.html HTTP/1.1" 404 154 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [22/Aug/2024:16:33:49 +0000] "GET /swagger HTTP/1.1" 404 146 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [22/Aug/2024:16:37:44 +0000] "GET /swagger HTTP/1.1" 404 146 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [22/Aug/2024:16:43:33 +0000] "GET /swagger HTTP/1.1" 404 146 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"

@@ -3,9 +3,13 @@ const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
-const app = express();
-uuid = require('uuid');
+const uuid = require('uuid');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
+require('./swagger')(app);
+
+const app = express();
 app.use(bodyParser.json());
 
 let users = [
@@ -177,6 +181,11 @@ app.post('/users', (req, res) => {
       res.status(400).send('no such user');
     }
   });
+
+const port = 3000;
+app.listen(port, () => {
+  console.log('Server is running on port ${port');
+});
 
 //create a write stream
 //a 'log.txt' file is created in root directory
