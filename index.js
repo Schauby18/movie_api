@@ -73,16 +73,66 @@ let movies = [
     }
 ];
 
-//Read
+/**
+ * @swagger
+ * /movies:
+ *   get:
+ *     summary: Retrieve a list of movies
+ *     responses:
+ *       200:
+ *         description: A list of movies
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ */
 app.get('/movies', (req, res) => {
     res.status(200).json(movies);
 })
 
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Retrieve a list of users
+ *     responses:
+ *       200:
+ *         description: A list of users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ */
 app.get('/users', (req, res) => {
     res.status(200).json(users);
   });
 
-//Read
+/**
+ * @swagger
+ * /movies/{title}:
+ *   get:
+ *     summary: Retrieve a movie by title
+ *     parameters:
+ *       - in: path
+ *         name: title
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The movie title
+ *     responses:
+ *       200:
+ *         description: A movie object
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *       400:
+ *         description: No such movie
+ */
 app.get('/movies/:title', (req, res) => {
     const { title } = req.params;
     const movie = movies.find(movie => movie.title === title );
@@ -94,7 +144,28 @@ app.get('/movies/:title', (req, res) => {
     }  
 });
 
-//Read
+/**
+ * @swagger
+ * /movies/genre/{genreName}:
+ *   get:
+ *     summary: Retrieve movies by genre
+ *     parameters:
+ *       - in: path
+ *         name: genreName
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The genre name
+ *     responses:
+ *       200:
+ *         description: A genre object
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *       400:
+ *         description: No such genre
+ */
 app.get('/movies/genre/:genreName', (req, res) => {
   const { genreName } = req.params; 
   const genre = movies.find(movie => movie.genre.name.toLowerCase() === genreName.toLowerCase()).genre;
@@ -105,6 +176,30 @@ app.get('/movies/genre/:genreName', (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /users:
+ *   post:
+ *     summary: Add a new user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: The created user object
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *       400:
+ *         description: Users need names
+ */
 app.post('/users', (req, res) => {
     const newUser = req.body;
   
@@ -117,6 +212,37 @@ app.post('/users', (req, res) => {
     }
   });
 
+  /**
+ * @swagger
+ * /users/{id}:
+ *   put:
+ *     summary: Update user info
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The user ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: The updated user object
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *       400:
+ *         description: No such user
+ */
   app.put('/users/:id', (req, res) => {
     const {id} = req.params;
     const updatedUser = req.body;
@@ -131,6 +257,30 @@ app.post('/users', (req, res) => {
     }
   });
 
+  /**
+ * @swagger
+ * /users/{id}/{movietitle}:
+ *   post:
+ *     summary: Add favorite movie for user
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The user ID
+ *       - in: path
+ *         name: movietitle
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The movie title
+ *     responses:
+ *       200:
+ *         description: Movie added to user's favorites
+ *       400:
+ *         description: No such user
+ */
   app.post('/users/:id/:movieTitle', (req, res) => {
     const { id, movieTitle } = req.params;
   
@@ -144,6 +294,28 @@ app.post('/users', (req, res) => {
     }
   });
 
+  /**
+ * @swagger
+ * /movies/director/{directorName}:
+ *   get:
+ *     summary: Retrieve movies by director
+ *     parameters:
+ *       - in: path
+ *         name: directorName
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The director name
+ *     responses:
+ *       200:
+ *         description: A director object
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *       400:
+ *         description: No such director
+ */
   app.get('/movies/director/:directorName', (req, res) => {
     const { directorName } = req.params; 
     const movie = movies.find(movie => movie.director.name.toLowerCase() === directorName.toLowerCase());
@@ -156,6 +328,30 @@ app.post('/users', (req, res) => {
     }
   });
 
+/**
+ * @swagger
+ * /users/{id}/{movietitle}:
+ *   delete:
+ *     summary: Remove favorite movie for user
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The user ID
+ *       - in: path
+ *         name: movietitle
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The movie title
+ *     responses:
+ *       200:
+ *         description: Movie removed from user's favorites
+ *       400:
+ *         description: No such user
+ */
   app.delete('/users/:id/:movieTitle', (req, res) => {
     const { id, movieTitle } = req.params;
   
@@ -169,6 +365,30 @@ app.post('/users', (req, res) => {
     }
   });
 
+/**
+ * @swagger
+ * /users/{id}:
+ *   delete:
+ *     summary: Delete a user
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The user ID
+ *     responses:
+ *       200:
+ *         description: The updated list of users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *       400:
+ *         description: No such user
+ */
   app.delete('/users/:id', (req, res) => {
     const { id } = req.params;
   
